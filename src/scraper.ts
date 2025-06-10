@@ -1,6 +1,8 @@
 // to scrape the web
 import { chromium } from "playwright";
 
+// the selector for news
+// WARN: This tag does change over time.
 const element = ".kY2IgmnCmOGjharHErah";
 
 // start of scraping
@@ -19,10 +21,12 @@ export async function scrapeDuckDuckGoNews(newsTitle: string): Promise<any> {
     await page.waitForSelector(element);
 
     // the data from the scraping and mapping.
+    // WARN: No data cleaning is performed.
     const data = await page.$$eval(element, (elements) =>
       elements.map((el) => el.textContent?.trim() || ""),
     );
 
+    // close the browser before returning from the process.
     await browser.close();
     return data;
   } catch (error) {
