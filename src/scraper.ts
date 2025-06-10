@@ -1,12 +1,10 @@
 // to scrape the web
 import { chromium } from "playwright";
 
-const source = "Donald Trump is dead";
-
 const element = ".kY2IgmnCmOGjharHErah";
 
 // start of scraping
-export async function scrapeDuckDuckGoNews() {
+export async function scrapeDuckDuckGoNews(newsTitle: string) {
   // launch chromium browser.
   // BUG: Headless mode does not work.
   // OPTIMIZE: Use headless mode.
@@ -14,7 +12,7 @@ export async function scrapeDuckDuckGoNews() {
   const page = await browser.newPage();
 
   // search for the news
-  await page.goto(`https://duckduckgo.com/?q=news:${source}`);
+  await page.goto(`https://duckduckgo.com/?q=news:${newsTitle}`);
 
   try {
     // wait for the selector (the news element)
