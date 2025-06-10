@@ -4,7 +4,7 @@ import { chromium } from "playwright";
 const element = ".kY2IgmnCmOGjharHErah";
 
 // start of scraping
-export async function scrapeDuckDuckGoNews(newsTitle: string) {
+export async function scrapeDuckDuckGoNews(newsTitle: string): Promise<any> {
   // launch chromium browser.
   // BUG: Headless mode does not work.
   // OPTIMIZE: Use headless mode.
@@ -12,7 +12,7 @@ export async function scrapeDuckDuckGoNews(newsTitle: string) {
   const page = await browser.newPage();
 
   // search for the news
-  await page.goto(`https://duckduckgo.com/?q=news:${newsTitle}`);
+  await page.goto(`https://duckduckgo.com/?q=${newsTitle}`);
 
   try {
     // wait for the selector (the news element)
@@ -22,6 +22,9 @@ export async function scrapeDuckDuckGoNews(newsTitle: string) {
     const data = await page.$$eval(element, (elements) =>
       elements.map((el) => el.textContent?.trim() || ""),
     );
+
+    await browser.close();
+    return data;
   } catch (error) {
     // if an error occurs log it
     console.log(error);
