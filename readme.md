@@ -20,7 +20,7 @@
 
 - Node.js v16+
 - NPM or Yarn
-- Internet access (to DuckDuckGo News)
+- Internet access (to DuckDuckGo)
 
 ---
 
@@ -71,10 +71,7 @@ GET http://localhost:7000/scrape?query=latest%20tech%20news
 {
   "query": "latest tech news",
   "result": [
-0: ""
-1: ""
-2: ""
-n: ""
+"","",""
 ]
 }
 ```
@@ -128,20 +125,6 @@ Contributions are welcome! Feel free to:
 - Write tests and CI workflows
 
 Please follow standard git workflows: fork → branch → PR.
-
----
-
-## 📜 License
-
-This project is distributed under the **MIT License**. See the [LICENSE](./LICENSE) for details.
-
----
-
-## 👤 Author
-
-**Tom Avilius**
-Open-source web scraper enthusiast
-[GitHub](https://github.com/tom-avilius) | [Website](https://tomavilius.in) | [Contact](https://www.tomavilius.in/contact)
 
 ---
 
