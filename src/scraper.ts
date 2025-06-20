@@ -22,15 +22,17 @@ export async function scrapeDuckDuckGoNews(newsTitle: string): Promise<any> {
     await page.waitForSelector(element);
     await page.waitForSelector(website);
 
-    // the data from the scraping and mapping.
+    // scrape and map website headings.
     // WARN: No data cleaning is performed.
     const data = await page.$$eval(element, (elements) =>
       elements.map((el) => el.textContent?.trim() || ""),
     );
+    // scrape website url's
     const data2 = await page.$$eval(website, (elements) =>
       elements.map((el) => el.textContent?.trim() || ""),
     );
 
+    // combine the scraped result into one
     var result = [{}];
     data.forEach((el) => {
       result = [...result, { source: data2[data.indexOf(el)], headline: el }];
